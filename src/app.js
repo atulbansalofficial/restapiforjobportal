@@ -1,10 +1,10 @@
 const express = require("express");
+require("./db/conn");
+const studentsRouter = require("./routers/student");
 const app = express();
-const port = process.env.PORT || 8000;
-app.get("/students", (req, res) => {
-  res.send("hello From the other sides.");
-});
-
-app.listen(port, () => {
-  console.log(`Connection is open at http://localhost:${port} `);
-});
+const port = process.env.PORT || 3000;
+app.use(express.json());
+app.use(studentsRouter);
+app.listen(port, () =>
+  console.log(`connection is setup at http://localhost:${port}`)
+);
